@@ -1,0 +1,137 @@
+{
+  "configVersion": 1,
+  "timestamp": 1689585326105,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/148.392541bcfcf962b2.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.1129d158bc136a3f.js",
+        "/manifest.webmanifest",
+        "/polyfills.c886aa1057ef6540.js",
+        "/runtime.8ab425cbecdf1d68.js",
+        "/styles.67cac487fab17943.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/i18n/ca.json",
+        "/assets/i18n/en.json",
+        "/assets/i18n/es.json",
+        "/assets/icons/ca.png",
+        "/assets/icons/en.png",
+        "/assets/icons/es.png",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/loading.svg",
+        "/assets/rhizomer-details.png",
+        "/assets/rhizomer-facets.jpg",
+        "/assets/rhizomer-network.png",
+        "/assets/rhizomer-wordcloud.png",
+        "/assets/rhizomikEye.png",
+        "/assets/rhizomikEye.svg",
+        "/fontawesome-webfont.2b13baa7dd4f54c9.eot",
+        "/fontawesome-webfont.8a7cb27d142e3e19.ttf",
+        "/fontawesome-webfont.cf011583fb81df9f.woff",
+        "/fontawesome-webfont.da909aa098b0ee2d.svg",
+        "/fontawesome-webfont.e9955780856cf8aa.woff2",
+        "/loading.51421ee64b84b8a1.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "patterns": [
+        "https:\\/\\/(?:.+\\/)?datasets\\/.*",
+        "http:\\/\\/(?:.+\\/)?datasets\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 250,
+      "maxAge": 86400000,
+      "timeoutMs": 300000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/148.392541bcfcf962b2.js": "d9e7004f940f833ae8001f7c6cc02856ce7f6cd2",
+    "/assets/i18n/ca.json": "94f39b3e802c622248a492c39f1b86f6131f57d7",
+    "/assets/i18n/en.json": "edbdb8acb5d28fd72dc34420ccc36f3d0fbed6db",
+    "/assets/i18n/es.json": "5684837aff9c08a49249a35d99bd4480f0c48848",
+    "/assets/icons/ca.png": "defcd6e9b87990c625e33ced04ed4d744af1f506",
+    "/assets/icons/en.png": "a038ba782cdede85ad6a44bd340b9bc22132a355",
+    "/assets/icons/es.png": "547c466f3b1e29b284f9f4743a65330b5b7e32da",
+    "/assets/icons/icon-128x128.png": "ba599d195a6fb9b335350c23bc903bc7ac793d95",
+    "/assets/icons/icon-144x144.png": "713f6ed92d6efb288de6226bf0cce07445f9d85b",
+    "/assets/icons/icon-152x152.png": "232de14f7ead6884edcfad756ee46da3af9cb3bd",
+    "/assets/icons/icon-192x192.png": "465b6bc1f426bea0029ca8063c4d6c036b2222e8",
+    "/assets/icons/icon-384x384.png": "f3faba6b0925ab730f73fae560a476aa698f856b",
+    "/assets/icons/icon-512x512.png": "9556eb84b0a6338faca35626cb3f0e6eeb47a30d",
+    "/assets/icons/icon-72x72.png": "8601a098b74b22727bf70628c029ca818ab6996b",
+    "/assets/icons/icon-96x96.png": "a7a2471f55df3842f67d662afff9ac5910509564",
+    "/assets/loading.svg": "7ec7041b023a2976bafd19ec435a4f8e816fad77",
+    "/assets/rhizomer-details.png": "1ba0822c7f2033a071c54193a540e89397b74163",
+    "/assets/rhizomer-facets.jpg": "5300d25114f26bb762e7f15a40788a6c9a3f8eab",
+    "/assets/rhizomer-network.png": "79968cd3620f80492b63f4a280e6e90c7e87e0b4",
+    "/assets/rhizomer-wordcloud.png": "be642f623ed4b9d86e23c487680d75a1d12ce128",
+    "/assets/rhizomikEye.png": "84dc91f249e8b7b0c8268cafa0eedf3dc070e8c2",
+    "/assets/rhizomikEye.svg": "f705f2cf5cc63563dd1edb187f1298f561922309",
+    "/favicon.ico": "def2500cc75172a98c472f0bd85cbff8ab69e34d",
+    "/fontawesome-webfont.2b13baa7dd4f54c9.eot": "d980c2ce873dc43af460d4d572d441304499f400",
+    "/fontawesome-webfont.8a7cb27d142e3e19.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/fontawesome-webfont.cf011583fb81df9f.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/fontawesome-webfont.da909aa098b0ee2d.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/fontawesome-webfont.e9955780856cf8aa.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/index.html": "c49c99089214a261eba3caaf553ebcca6738ec4f",
+    "/loading.51421ee64b84b8a1.svg": "7ec7041b023a2976bafd19ec435a4f8e816fad77",
+    "/main.1129d158bc136a3f.js": "21681761f2466c7ef8838531a9e7daf0160fd4e7",
+    "/manifest.webmanifest": "743916a5624db4d133976cee43669257f07aa4a5",
+    "/polyfills.c886aa1057ef6540.js": "267aa1ff59e556b6c8b4a586e9e7dc587ace31ed",
+    "/runtime.8ab425cbecdf1d68.js": "3d9b865d6b1e3de3571237e680ef051ebb723cb7",
+    "/styles.67cac487fab17943.css": "33eb6229e58066c2d1cc6e62efa82d3a4ea1b99c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
