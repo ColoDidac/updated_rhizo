@@ -1,0 +1,245 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Dataset Details</a>
+    <ng-template ngbNavContent>
+      <form id="dataset-form" (ngSubmit)="saveDataset()" #datasetForm="ngForm">
+        <fieldset>
+          <!-- Dataset name input -->
+          <div class="form-group" [class.was-validated]="name.dirty || name.touched">
+            <label class="control-label" for="name">Name*</label>
+            <input id="name" name="name" type="text" class="form-control" required
+                   [(ngModel)]="dataset.id" #name="ngModel" [readOnly]="isEditing">
+            <div class="invalid-feedback">A dataset name is required</div>
+          </div>
+
+          <!-- Access Level input -->
+          <div class="form-group">
+            <label class="control-label" for="isPublic">Access</label>
+            <select id="isPublic" name="isPublic" class="form-control" required
+                    [(ngModel)]="dataset.public">
+              <option [value]="true">Public</option>
+              <option [value]="false">Private</option>
+            </select>
+          </div>
+
+          <!-- Query Type input -->
+          <div class="form-group">
+            <label class="control-label" for="queryType">Query Type</label>
+            <select id="queryType" name="queryType" class="form-control" required
+                    [(ngModel)]="dataset.queryType">
+              <option [value]="'DETAILED'">Detailed</option>
+              <option [value]="'OPTIMIZED'">Optimized</option>
+            </select>
+            <div class="small">"Optimized" is just recommended for large datasets, "Detailed" enables network overview.</div>
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <button id="submitDataset" type="submit" class="btn m-1 btn-success pull-right"
+                    [disabled]="!datasetForm.form.valid || (!datasetForm.form.dirty && isEditing)">Submit</button>
+            <button id="listDataset" type="button" [routerLink]="['..','details']"
+                    class="btn m-1 btn-outline-primary pull-right">Cancel</button>
+          </div>
+
+        </fieldset>
+      </form>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="2" [disabled]="!dataset.id || !isEditing">
+    <a ngbNavLink>Endpoint Details</a>
+    <ng-template ngbNavContent>
+      <form id="endpoint-form" (ngSubmit)="saveEndpoint()" #endPointForm="ngForm">
+        <fieldset>
+          <!-- Server type choice -->
+          <div class="form-group">
+            <label class="control-label" for="serverType">SPARQL Server type</label>
+            <select id="serverType" name="serverType" class="form-control" required
+                    [(ngModel)]="endpoint.type">
+              <option [value]="'GENERIC'">Generic</option>
+              <option [value]="'FUSEKI'">Fuseki</option>
+              <option [value]="'FUSEKI_LUCENE'">Fuseki+Lucene</option>
+              <option [value]="'MARKLOGIC'">MarkLogic</option>
+              <option [value]="'STARDOG'">Stardog</option>
+              <option [value]="'VIRTUOSO'">Virtuoso</option>
+            </select>
+          </div>
+
+          <!-- Query Service input -->
+          <div class="form-group" [class.was-validated]="query.dirty || query.touched">
+            <label class="control-label" for="query">SPARQL Query Service URL*</label>
+            <input id="query" name="query" type="url" class="form-control" required
+                   [(ngModel)]="endpoint.queryEndPoint" #query="ngModel" pattern="https?://.+">
+            <div class="invalid-feedback">A SPARQL query endpoint is required</div>
+          </div>
+
+          <!-- Endpoint Timeout input -->
+          <div class="form-group" [class.was-validated]="timeout.dirty || timeout.touched">
+            <label class="control-label" for="query">SPARQL Service Timeout*</label>
+            <input id="timeout" name="timeout" type="number" class="form-control" required
+                   [(ngModel)]="endpoint.timeout" #timeout="ngModel">
+            <div class="invalid-feedback">A SPARQL service timeout is required</div>
+            <div class="small">Long timeouts recommended, in milliseconds. 300000 corresponds to 5 minutes.</div>
+          </div>
+
+          <!-- Password protected checkbox -->
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [checked]="passwordProtected" (change)="switchPasswordProtected()">
+              <label class="form-check-label">Endpoint password protected</label>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="this.passwordProtected">
+
+            <div class="row">
+              <!-- Query Service Username input -->
+              <div class="form-group col-6" [class.was-validated]="queryUsername.dirty || queryUsername.touched">
+                <label class="control-label" for="queryUsername">SPARQL Query Username (optional)</label>
+                <input id="queryUsername" name="queryUsername" type="text" class="form-control"
+                       [(ngModel)]="endpoint.queryUsername" #queryUsername="ngModel">
+              </div>
+
+              <!-- Query Service Password input -->
+              <div class="form-group col-6" [class.was-validated]="queryPassword.dirty || queryPassword.touched">
+                <label class="control-label" for="queryPassword">SPARQL Query Username (optional)</label>
+                <input id="queryPassword" name="queryPassword" type="password" class="form-control"
+                       [readOnly]="!changePassword"
+                       [(ngModel)]="endpoint.queryPassword" #queryPassword="ngModel">
+                <div class="form-check" *ngIf="isEditing">
+                  <input class="form-check-input" type="checkbox" [checked]="changePassword" (change)="switchChangePassword()">
+                  <label class="form-check-label">Set password</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Writable checkbox -->
+          <div class="form-group" [class.was-validated]="writable.dirty || writable.touched">
+            <div class="form-check">
+              <input id="writable" name="writable" class="form-check-input" type="checkbox" #writable="ngModel"
+                     [(ngModel)]="endpoint.writable" (change)="switchedWritable()">
+              <label class="form-check-label">Endpoint writable</label>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="endpoint.writable">
+
+            <!-- Update Service input -->
+            <div class="form-group" [class.was-validated]="update.dirty || update.touched">
+              <label class="control-label" for="update">SPARQL Update Service URL (optional)</label>
+              <input id="update" name="update" type="url" class="form-control"
+                     [(ngModel)]="endpoint.updateEndPoint" #update="ngModel" pattern="https?://.+">
+            </div>
+
+            <div class="row">
+              <!-- Update Service Username input -->
+              <div class="form-group col-6" [class.was-validated]="username.dirty || username.touched">
+                <label class="control-label" for="username">SPARQL Update Username (optional)</label>
+                <input id="username" name="username" type="text" class="form-control"
+                       [(ngModel)]="endpoint.updateUsername" #username="ngModel">
+              </div>
+
+              <!-- Update Service Password input -->
+              <div class="form-group col-6" [class.was-validated]="password.dirty || password.touched">
+                <label class="control-label" for="password">SPARQL Update Username (optional)</label>
+                <input id="password" name="password" type="password" class="form-control"
+                       [readOnly]="!changePassword"
+                       [(ngModel)]="endpoint.updatePassword" #password="ngModel">
+                <div class="form-check" *ngIf="isEditing">
+                  <input class="form-check-input" type="checkbox" [checked]="changePassword" (change)="switchChangePassword()">
+                  <label class="form-check-label">Set password</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Query Type input -->
+            <div class="form-check">
+              <input id="inferenceEnabled" name="inferenceEnabled" class="form-check-input" type="checkbox"
+                     [(ngModel)]="endpoint.inferenceEnabled">
+              <label class="form-check-label">Enable Inference</label>
+              <div class="small">Compute inferred types based on class hierarchies, properties domains and ranges.</div>
+            </div>
+
+          </div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <button id="submitEndpoint" type="submit" class="btn m-1 btn-success pull-right"
+                    [disabled]="!endPointForm.form.valid || (!endPointForm.form.dirty && isEditing)">Submit</button>
+            <button id="listEndpoint" type="button" [routerLink]="['..','details']"
+                    class="btn m-1 btn-outline-primary pull-right">Cancel</button>
+          </div>
+
+        </fieldset>
+      </form>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="3" [disabled]="!endpoint.serverGraphs">
+    <a ngbNavLink>Dataset Graphs</a>
+    <ng-template ngbNavContent>
+      <form id="graphs-form" (ngSubmit)="setGraphs()" #graphsForm="ngForm">
+        <fieldset>
+
+          <div *ngIf="!endpoint.serverGraphs && !error" id="loading" style="text-align: center;">
+            <div id="spinner"></div>
+            <div>Retrieving endpoint graphs...</div>
+          </div>
+
+          <div *ngIf="!endpoint.serverGraphs && error" id="errored" style="text-align: center;">
+            <div class="mt-3">Error retrieving endpoint graphs...</div>
+            <button id="backToConfig" type="button" (click)="active = 2; error = false"
+                    class="btn m-1 btn-warning">Review</button>
+          </div>
+
+          <div *ngIf="endpoint.serverGraphs || endpoint.ontologies">
+
+            <!-- Graphs checkboxes -->
+            <label class="control-label">Select the Dataset's Data and Ontology Graphs</label>
+            <div>
+              <label class="form-check-label small">Data</label>
+              <label class="form-check-label ml-2 small">Ontology</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Default Graph" [disabled]="true"
+                     style="margin-left: -0.75em" [checked]="this.endpoint.graphs.length === 0" >
+              <label class="form-check-label" style="margin-left: 5em">Default Graph</label>
+            </div>
+            <div *ngFor="let graph of endpoint.serverGraphs" class="dataset-graph form-check">
+              <input class="form-check-input" style="margin-left: -0.75em" type="checkbox" value="{{graph}}"
+                     (change)="graphChange(graph, $event.target.checked)" [checked]="isSelectedData(graph)">
+              <input class="form-check-input" style="margin-left: 2em" type="checkbox" value="{{graph}}"
+                     (change)="ontologyChange(graph, $event.target.checked)" [checked]="isSelectedOntology(graph)">
+              <label class="form-check-label" style="margin-left: 5em">{{graph}}</label>
+              <span *ngIf="endpoint.writable" class="badge badge-pill badge-secondary pull-right"
+                    style="cursor: pointer; margin-top: 3px;" (click)="loadModal(graph)">Load Data</span>
+            </div>
+            <div *ngIf="endpoint.writable" class="input-group input-group-sm mt-3" [class.was-validated]="newGraph.value">
+              <input id="newGraph" name="newGraph" type="url" class="form-control" placeholder="Graph URI"
+                     ngModel #newGraph="ngModel">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="addGraph(newGraph)"
+                        [disabled]="!newGraph.value || newGraph.invalid">Add Graph</button>
+              </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+              <button id="submitGraphs" type="submit" class="btn m-1 btn-success pull-right"
+                      [disabled]="!graphsForm.form.valid">Submit</button>
+              <button id="listGraphs" type="button" [routerLink]="['..','details']"
+                      class="btn m-1 btn-outline-primary pull-right">Cancel</button>
+            </div>
+
+          </div>
+
+        </fieldset>
+      </form>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

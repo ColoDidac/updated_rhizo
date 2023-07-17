@@ -1,0 +1,49 @@
+<div class="card mb-1">
+  <div class="card-body row m-1">
+    <h4 class="card-title col-md-12 p-1">
+      <a [routerLink]="['/datasets', dataset.id]">{{dataset.id}}</a>
+    </h4>
+    <div class="col-md-6 p-1">
+      <h6 class="card-subtitle text-muted">Query Service</h6>
+      <p class="card-text">{{endpoint.queryEndPoint}}</p>
+    </div>
+    <div class="col-md-6 p-1">
+      <h6 class="card-subtitle text-muted">Update Service</h6>
+      <p class="card-text">{{endpoint.updateEndPoint}}</p>
+    </div>
+  </div>
+  <div class="card-body row m-1">
+    <div class="col-md-2 p-1">
+      <h6 class="card-subtitle text-muted">Owner</h6>
+      <p class="card-text">{{dataset.owner}}</p>
+    </div>
+    <div class="col-md-2 p-1">
+      <h6 class="card-subtitle text-muted">Access</h6>
+      <p *ngIf="!dataset.public" class="card-text">Private</p>
+      <p *ngIf="dataset.public" class="card-text">Public</p>
+    </div>
+    <div class="col-md-2 p-1">
+      <h6 class="card-subtitle text-muted">Query Type</h6>
+      <p class="card-text">{{dataset.queryType}}</p>
+    </div>
+    <div class="col-md-6 p-1">
+      <h6 class="card-subtitle text-muted">Dataset Graphs</h6>
+      <p *ngIf="!endpoint.graphs?.length" class="card-text">Default graph</p>
+      <p *ngIf="endpoint.graphs?.length" class="card-text">{{endpoint.graphs}}</p>
+    </div>
+  </div>
+  <div class="card-footer text-right">
+    <div class="col-md-12 p-1">
+      <button id="exploreBtn" type="button" [routerLink]="['/datasets', dataset.id]"
+              class="btn m-1 btn-outline-primary pull-right">
+        <span class="fa fa-globe"></span> Explore</button>
+      <button id="editBtn" type="button" (click)="editDataset()"
+              class="btn m-1 btn-outline-success pull-right">
+        <span class="fa fa-pencil"></span> Edit</button>
+      <button id="updateBtn" type="button" (click)="reloadClassList()"
+              class="btn m-1 btn-outline-warning pull-right">Refresh</button>
+      <button id="deleteBtn" type="button" (click)="deleteDataset()"
+              class="btn m-1 btn-outline-danger pull-right">Delete</button>
+    </div>
+  </div>
+</div>

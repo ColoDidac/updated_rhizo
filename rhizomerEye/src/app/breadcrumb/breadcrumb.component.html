@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+  <ul class="breadcrumb">
+    <li class="breadcrumb-item item" [class.active]="isLast"
+        *ngFor="let page of breadcrumbs; last as isLast">
+      <a *ngIf="!isLast" [routerLink]="[page.uri]">{{page.name}}</a>
+      <span *ngIf="isLast">{{page.name}}</span>
+    </li>
+    <li *ngIf="filters.length" class="breadcrumb-item item"></li>
+    <li class="badge badge-warning badge-pill m-1 text-truncate" *ngFor="let filter of filters">
+      <span class="fa fa-times-circle" (click)="removeFilter(filter)"></span>
+      {{filter.facet.getLabel(translate.currentLang)}}
+      <span *ngIf="filter.getLabel(translate) && filter.facet.getLabel(translate.currentLang)">: </span>
+      <span *ngIf="filter.getLabel(translate)">{{filter.getLabel(translate)}}</span>
+    </li>
+  </ul>
+</nav>

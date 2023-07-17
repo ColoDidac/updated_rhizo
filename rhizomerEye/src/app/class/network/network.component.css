@@ -1,0 +1,48 @@
+path {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+}
+
+marker path {
+  fill: grey;
+}
+
+.link-label {
+  text-anchor: middle;
+  font: 1.2vmin sans-serif;
+  fill: grey;
+}
+
+.link-label-outline {
+  font: 1.2vmin sans-serif;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+}
+
+.text-path {
+  stroke: none;
+}
+
+circle {
+  stroke: white;
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.node-label {
+  font: 1.6vmin sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.node-label-outline {
+  font: 1.6vmin sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+}

@@ -1,0 +1,21 @@
+.card-img-top {
+  height: 100px;
+  object-fit: cover;
+}
+
+.expanded {
+  height: auto;
+}
+
+.reverse-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  direction: rtl;
+}
+
+li.http\:\/\/www\.w3\.org\/2000\/01\/rdf-schema\#label,
+li[class*=wikiPage] {
+  display: none;
+}
