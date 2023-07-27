@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Endpoint {\n  constructor(values = {}) {\n    this.type = 'GENERIC';\n    this.inferenceEnabled = false;\n    this.timeout = 300000;\n    Object.assign(this, values);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
