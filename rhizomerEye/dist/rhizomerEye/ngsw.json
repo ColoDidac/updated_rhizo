@@ -11,14 +11,14 @@
         "ignoreVary": true
       },
       "urls": [
-        "./148.392541bcfcf962b2.js",
-        "./favicon.ico",
-        "./index.html",
-        "./main.1129d158bc136a3f.js",
-        "./manifest.webmanifest",
-        "./polyfills.c886aa1057ef6540.js",
-        "./runtime.8ab425cbecdf1d68.js",
-        "./styles.67cac487fab17943.css"
+        "/ULTIMATE/148.392541bcfcf962b2.js",
+        "/ULTIMATE/favicon.ico",
+        "/ULTIMATE/index.html",
+        "/ULTIMATE/main.1129d158bc136a3f.js",
+        "/ULTIMATE/manifest.webmanifest",
+        "/ULTIMATE/polyfills.c886aa1057ef6540.js",
+        "/ULTIMATE/runtime.8ab425cbecdf1d68.js",
+        "/ULTIMATE/styles.67cac487fab17943.css"
       ],
       "patterns": []
     },
