@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { Labelled } from '../shared/labelled';\nexport class Facet extends Labelled {\n  constructor(values = {}) {\n    super(values);\n  }\n\n}\nFacet.searchFacet = new Facet({\n  uri: 'urn:rhz:contains',\n  label: '',\n  curie: 'rhz:contains'\n});","map":null,"metadata":{},"sourceType":"module"}

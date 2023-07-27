@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { Labelled } from '../shared/labelled';\nexport class Range extends Labelled {\n  constructor(values = {}) {\n    super(values);\n  }\n\n}\nRange.searchRange = new Range({\n  uri: 'http://www.w3.org/2001/XMLSchema#string',\n  curie: 'xsd:string'\n});","map":null,"metadata":{},"sourceType":"module"}

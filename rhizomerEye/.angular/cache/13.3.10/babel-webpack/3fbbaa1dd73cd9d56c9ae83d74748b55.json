@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Dataset {\n  constructor(values = {}) {\n    this.public = false;\n    this.queryType = 'DETAILED';\n    Object.assign(this, values);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
