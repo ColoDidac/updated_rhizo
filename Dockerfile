@@ -1,12 +1,3 @@
-#FIRST STEP: Build Angular
-FROM node:12.7-alpine AS build
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-#SECOND STEP: Run rhizo-eye
 FROM nginx:alpine
 COPY dist/rhizomerEye /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
